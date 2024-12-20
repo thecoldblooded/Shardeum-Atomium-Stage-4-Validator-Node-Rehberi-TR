@@ -1,179 +1,157 @@
-# Shardeum-Atomium-Stage-4-Validat-r-Node-Rehberi-TR
-Bu rehber kısa süre önce başlayan Shardeum Atomium Stage 4 için validatör node kurmak isteyenler için rehber niteliğinde hazırlanmıştır.
-# How to Install and Run a Shardeum Validator Node
+**Minimum Sistem Gereksinimleri**
 
-This guide will walk you through the process of installing and running a Shardeum Validator Node on your system. Please follow the steps below carefully.
 
-## Prerequisites
+250 GB SSD storage
 
-Before you begin, ensure you have the following prerequisites installed on your system:
+Kurulumu kendi cihazınıza yapıyorsanız eğer 10 yaşından küçük dört çekirdekli CPU, 16 GB ram, 4+ GB Virtual Memory
 
-1. Install Package Managers
+Sunucu kiralıyorsanız da çift çekirdekli CPU, daha yeni Xeons / EPYC ile barındırılıyorsa çalışır, 8 GB RAM + 8 GB Virtual Memory
 
-**For Linux:**
+**NOT: Ben sunucularımı genellikle Hetzner üzerinden kiraladığım Cloud VPS sunuculara kuruyorum. Ben bu validatörü CX42'ye kurdum, CPX41 ya da CX52'ye de kurulabilir. Maliyeti göz önünde bulundurarak CX42'ye kurulum gerçekleştirdim.**
+
+# Shardeum Atomium Stage 4 Validator Node nasıl kurulur?
+
+Bu rehber, sisteminize devam eden Shardeum Atomium Stage 4 Validator Node kurma ve çalıştırma sürecinde size yol gösterecektir. Lütfen aşağıdaki adımları dikkatlice izleyin.
+
+## Önkoşullar
+
+Başlamadan önce, sisteminizde aşağıdaki önkoşulların yüklü olduğundan emin olun:
+
+1. Paket Yöneticilerini Kurma
+
+**Linux İçin:**
 
 ```bash
 sudo apt-get install curl
 ```
 
-**For MacOS:**
+**MacOS İçin:**
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Add Homebrew to your `PATH`:
+Homebrewu `PATH`a ekleme: (Linux Olanların Yapmasına Gerek Yok)
 
 ```bash
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-2. Update Package Managers:
+2. Paket Yöneticilerini Güncelleme:
 
-For Linux:
+Linux İçin:
 
 ```bash
 sudo apt update
 ```
 
-For MacOS:
+MacOS İçin:
 
 ```bash
 brew update
 ```
 
-3. Install docker
+3. Docker'ı Yükleme
 
-For Linux:
+Linux İçin:
 
-Install docker with docker.io
+Docker'ı docker.io ile Kurma
 
 ```bash
 sudo apt install docker.io
 ```
 
-For MacOS:
+MacOS İçin:
 
 ```bash
 brew install docker
 ```
 
-> Verify Docker installation by running `docker --version` (should return version 20.10.12 or higher).
+> Docker kurulumunu `docker --version` çalıştırarak doğrulayın (20.10.12 veya daha yüksek bir sürüm görmelisiniz).
 
-4. Install docker-compose
+4. Docker-compose Yükleme
 
-**For Linux:**
+**Linux İçin:**
 
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 
-Setup permissions for docker-compose using
+Docker-compose kullanımı için kurulum izni ayarlama
 
 ```bash
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-**For MacOS:**
+**MacOS İçin:**
 
 ```bash
 brew install docker-compose
 ```
 
-> Verify docker-compose installation by running `docker-compose --version` (should return version 1.29.2 or higher).
+> `docker-compose --version` çalıştırarak docker-compose kurulumunu doğrulayın (1.29.2 veya daha yüksek bir sürüm görmelisiniz).
 
-## Download and Run Installation Script
+## Kurulum Komut Dosyasını İndirin ve Çalıştırın
 
-Choose one of the following methods to download and run the installation script:
+Kurulum komut dosyasını indirmek ve çalıştırmak için aşağıdaki yöntemlerden birini seçin: **Ben kurulum için `curl` kullanmayı tercih ediyorum.**
 
-Using `curl`
+`curl` kullanarak kurmak için
 
 ```bash
 curl -O https://raw.githubusercontent.com/shardeum/validator-dashboard/main/installer.sh && chmod +x installer.sh && ./installer.sh
 ```
 
-Using `wget`
+`wget` kullanarak kurmak için
 
 ```bash
 wget https://raw.githubusercontent.com/shardeum/validator-dashboard/main/installer.sh && chmod +x installer.sh && ./installer.sh
 ```
 
-Follow the instructions provided by the installer script. Ensure you input the correct Archiver and Monitor IP addresses for the network you wish your validator to join.
+Bu aşamadan sonra aşağıdaki sorulara belirttiğim yanıtları vermelisiniz kurulumun başarıyla tamamlanması için:
 
-> If you are behind a router and you are using ports 9001 and 10001 for p2p communication, make sure ports 9001 and 10001, are forwarded (be careful doing this since it will modify your firewall). More info on router port forwarding: <https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/>
+- By running this installer, you agree to allow the Shardeum team to collect this data. (y/n)?: -> Y + ENTER
+- Do you want to run the web based Dashboard? (y/n): -> Y + ENTER
+- Set the password to access the Dashboard: -> Dashboard'a erişim için bir şifre belirlemeniz gerekiyor. **NOT: Şifrenizde mutlaka bir büyük bir küçük harf bir adet özel harf (!@? gibi) olmalı ve minimum 8 karakter olmalı. Aksi halde panele giriş yaparken hata alırsınız.**
+- Enter the port (1025-65536) to access the web based Dashboard (default 8080): -> ENTER
+- If you wish to set an explicit external IP, enter an IPv4 address (default=auto): -> ENTER
+- If you wish to set an explicit internal IP, enter an IPv4 address (default=auto): -> ENTER
+- To run a validator on the Sphinx Atomium network, you will need to open two ports in your firewall.
+  This allows p2p communication between nodes.
+  Enter the first port (1025-65536) for p2p communication (default 9001): -> ENTER
+- Enter the second port (1025-65536) for p2p communication (default 10001): -> ENTER
+- What base directory should the node use (defaults to ~/.shardeum): -> ENTER
 
-## Starting the Validator
+Bu aşamadan sonra kurulumunuz başlayacak. Tamamlanması sunucu performansına bağlı olmakla birlikte bende ortalama 5 dakika sürdü.
 
-After the installation process completes, you can start the validator using either the web-based dashboard or the command line:
+### Cüzdanınıza Ağı Eklemek İçin
 
-Using Web Dashboard:
+<https://docs.shardeum.org/docs/network/endpoints> sayfasını açın ve Atomium ağını cüzdanınıza ekleyin.
 
-- Open a web browser and navigate to the web dashboard at `localhost:8080` or ServerIP:8080
-- Enter the password you set during the installation process.
-- Click the `Start Node` button in the top right white box.
-- Once the validator has started, connect your wallet.
+### Faucet'ten Token Almak İçin
 
-Using Command Line:
+[Shardeum Discord'a katılın](https://discord.gg/shardeum) ve `/faucet <CÜZDAN ADRESİ>` komutunu çalıştırarak faucetten token talep edin.
 
-- Open a terminal and navigate to the Shardeum home directory (`$HOME/.shardeum`).
-- Enter the validator container with `./shell`.
-- In the container, run `operator-cli start` to start the validator node.
+## Validatörü Başlatmak
 
-### Add the network to wallet
+Yükleme işlemi tamamlandıktan sonra, web tabanlı kontrol panelini veya komut satırını kullanarak doğrulayıcıyı başlatabilirsiniz:
 
-Open the page <https://docs.shardeum.org/docs/network/endpoints> and use the setting for the Atomium network.
+Web Arayüzüne Erişmek İçin:
 
-### Get some coins from the faucet
+- Tarayıcınızı açın ve eğer sunucuya kurduysanız https://SERVER_IP:8080 uzantısına, kendi cihazınıza kurduysanız https://localhost:8080 adresine giriş yapın.
+- Sunucu kurulumunu gerçekleştirirken girdiğiniz şifreyi girerek panele erişim sağlayın. 
+- Sağ üstteki beyaz kutuda bulunan `Start Node` düğmesine tıklayın.
+- Validator başladıktan sonra cüzdanınızı bağlayın.
+- Faucet'ten temin ettiğiniz $SHM tokenlerden minimum 10 adet $SHM stake edin ve onaylayın.
 
-[Join the Shardeum Discord](https://discord.gg/shardeum) and claim tokens from the faucet Channel by running the `/faucet <account>` command.
+NOT: Eğer arayüzden başlatmak konusunda problem yaşıyorsanız terminal ekranınızdan şu komutu girerek de başlatabilirsiniz.
 
-### Start your validator node
+``` cd shardeum ```
 
-- Open a web browser and navigate to the web dashboard at `localhost:8080` or ServerIP:8080 (or the port you picked)
-- Click the `Start Node` button.
+``` bash ./shell.sh ```
 
-### Stake SHM
+``` operator-cli start ```
 
-Connect the wallet and stake 10 SHM.
+Start işlemini ve stake işlemini tamamladıktan sonra arayüzde "Waiting for Network ya da On Standby" şeklinde bir uyarı görüyorsanız bir problem yok. Ağ bir süre sonra sizi onaylayacaktır.
 
-Now check your node status, if your node status is on `Standby` and you have 10 SHM or more staked, your validator node is setup correctly. The network will automatically add your validator to be active in the network. The time to be added as an active validator will vary based on network load and validators in the network.
-
-## Stack management
-
-### Start the stack
-
-```bash
-./docker-up.sh
-```
-
-This will be more effective when the info gathered in the install script is stored in persisent volume that is mounted by the container.
-
-### Stop the stack
-
-```bash
-./docker-down.sh
-```
-
-### Clean up
-
-```bash
-./clean.sh
-```
-
-This will clean up the last (lastest) build. Just meant to save a few key strokes.
-
-Instructions for the user wanting to run a Shardeum validator node can be found here: <https://docs.shardeum.org/docs/node/run/validator>
-
-## Versioning
-
-To set up the dashboard installer script for different versions of the Shardeum network follow the steps below:
-
-- Point the installer to the correct CLI and GUI versions in [the entrypoint.sh](https://github.com/shardeum/validator-dashboard/blob/d366e0fbf53ca7e8efb7f7d4aa1db4de7574657e/entrypoint.sh#L25) file.
-- Set the right docker image version in the [Dockerfile](https://github.com/shardeum/validator-dashboard/blob/d366e0fbf53ca7e8efb7f7d4aa1db4de7574657e/Dockerfile#L1). You can find all tagged image versions [here](https://github.com/shardeum/shardeum/pkgs/container/server/versions?filters%5Bversion_type%5D=tagged).
-- The installer script creates a `.env` file that [defines the network details](https://github.com/shardeum/validator-dashboard/blob/d366e0fbf53ca7e8efb7f7d4aa1db4de7574657e/installer.sh#L540-L589), modify the script to specify the details of the new network.
-  The script should now correctly set up the Dashboard for your new network.
-
-## Contributing
-
-Contributions are very welcome! Everyone interacting in our codebases, issue trackers, and any other form of communication, including chat rooms and mailing lists, is expected to follow our [code of conduct](./CODE_OF_CONDUCT.md) so we can all enjoy the effort we put into this project.
+Shardeum Validator Node çalıştırmak isteyen kullanıcı için talimatlar burada bulunabilir: <https://docs.shardeum.org/docs/node/run/validator>
