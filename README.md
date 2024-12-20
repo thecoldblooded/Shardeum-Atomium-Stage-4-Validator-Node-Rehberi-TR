@@ -130,7 +130,7 @@ Bu aşamadan sonra kurulumunuz başlayacak. Tamamlanması sunucu performansına 
 
 ### Faucet'ten Token Almak İçin
 
-[Shardeum Discord'a katılın](https://discord.gg/shardeum) ve `/faucet <CÜZDAN ADRESİ>` komutunu çalıştırarak faucetten token talep edin.
+[Shardeum Discord'a katılın](https://discord.gg/shardeum) ve `/faucet <CÜZDAN ADRESİ>` komutunu çalıştırarak faucetten token talep edin. **Yoğunluk sebebiyle tokenin gelmesi birkaç saati bulabilir.**
 
 ## Validatörü Başlatmak
 
