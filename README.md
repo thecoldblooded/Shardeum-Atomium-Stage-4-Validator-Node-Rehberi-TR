@@ -7,7 +7,7 @@ Kurulumu kendi cihazınıza yapıyorsanız eğer 10 yaşından küçük dört ç
 
 Sunucu kiralıyorsanız da çift çekirdekli CPU, daha yeni Xeons / EPYC ile barındırılıyorsa çalışır, 8 GB RAM + 8 GB Virtual Memory
 
-**NOT: Ben sunucularımı genellikle Hetzner üzerinden kiraladığım Cloud VPS sunuculara kuruyorum. Ben bu validatörü CX42'ye kurdum, CPX41 ya da CX52'ye de kurulabilir. Maliyeti göz önünde bulundurarak CX42'ye kurulum gerçekleştirdim.**
+**NOT: Ben sunucularımı genellikle Hetzner üzerinden kiraladığım Cloud VPS sunuculara kuruyorum. Ben bu validatörü CX42'ye kurdum, CPX41 ya da CX52'ye de kurulabilir. Maliyeti göz önünde bulundurarak CX42'ye kurulum gerçekleştirdim. Ubuntu 22.04 seçiyorum işletim sistemi olarak.**
 
 # Shardeum Atomium Stage 4 Validator Node nasıl kurulur?
 
