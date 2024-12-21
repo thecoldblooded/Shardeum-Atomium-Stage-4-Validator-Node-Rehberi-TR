@@ -62,6 +62,8 @@ Docker'ı docker.io ile Kurma
 sudo apt install docker.io
 ```
 
+Do you want to continue? [Y/n] -> Y + ENTER
+
 MacOS İçin:
 
 ```bash
