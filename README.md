@@ -140,7 +140,7 @@ Yükleme işlemi tamamlandıktan sonra, web tabanlı kontrol panelini veya komut
 
 Web Arayüzüne Erişmek İçin:
 
-- Tarayıcınızı açın ve eğer sunucuya kurduysanız https://SERVER_IP:8080 uzantısına, kendi cihazınıza kurduysanız https://localhost:8080 adresine giriş yapın.
+- Tarayıcınızı açın ve eğer sunucuya kurduysanız https://SERVER_IP:8080 uzantısına, kendi cihazınıza kurduysanız https://localhost:8080 adresine giriş yapın. **Güvenlik uyarısı vermesi normal, 
 - Sunucu kurulumunu gerçekleştirirken girdiğiniz şifreyi girerek panele erişim sağlayın. 
 - Sağ üstteki beyaz kutuda bulunan `Start Node` düğmesine tıklayın.
 - Validator başladıktan sonra cüzdanınızı bağlayın.
