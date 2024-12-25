@@ -177,10 +177,13 @@ Güncellemeyi yapmak için aşağıdaki komutları sunucunuza girin. **Güncelle
 Bu işlemleri tamamladıktan sonra panele geçip şifremizle giriş yaptıktan sonra Remove Stake tıklayıp Confirm Unstake diyerek işlemi onaylıyoruz. İşlem tamamlandıktan sonra tekrar Terminale dönerek;
 
 ``` cd shardeum ```
+
 ``` bash ./shell.sh ```
+
 ``` operator-cli gui start ```
 
-komutlarını girip tekrar panele şifremizle giriş yapıyoruz. Start Node tuşuna bastıktan sonra No SHM Staked uyarısını görüp alt kısımdan Add Stake tuşuna basarak minimum 10 SHM stake ediyoruz ve işlemi onaylıyoruz.
+
+Komutlarını girip tekrar panele şifremizle giriş yapıyoruz. Start Node tuşuna bastıktan sonra No SHM Staked uyarısını görüp alt kısımdan Add Stake tuşuna basarak minimum 10 SHM stake ediyoruz ve işlemi onaylıyoruz.
 
 **Güncelleme işlemi başarıyla tamamlanmıştır. Waiting for network ve ardından Standby fonksiyonunu gördükten sonra ekranı ve terminali kapatabiliriz.**
 
