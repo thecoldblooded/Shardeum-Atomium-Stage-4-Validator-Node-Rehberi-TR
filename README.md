@@ -162,6 +162,8 @@ Shardeum Validator Node çalıştırmak isteyen kullanıcı için talimatlar bur
 
 Güncellemeyi yapmak için aşağıdaki komutları sunucunuza girin. **Güncellemeye başlamadan önce panele giriş yaparak node durumunu kontrol edin, Active  durumda ise Stand By durumuna geçmesini bekleyip ondan sonra güncelleme yapın.**
 
+Terminali açın ve aşağıdaki komutu girerek güncellemeye başlayın.
+
 ``` curl -O https://raw.githubusercontent.com/shardeum/shardeum-validator/refs/heads/itn4/install.sh && chmod +x install.sh && ./install.sh ```
 
 - By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?: Y + ENTER
