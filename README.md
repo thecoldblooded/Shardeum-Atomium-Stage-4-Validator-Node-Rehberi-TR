@@ -158,7 +158,7 @@ Start işlemini ve stake işlemini tamamladıktan sonra arayüzde "Waiting for N
 
 Shardeum Validator Node çalıştırmak isteyen kullanıcı için talimatlar burada bulunabilir: <https://docs.shardeum.org/docs/node/run/validator>
 
-## 24.12.2024 1.16.2 Güncellemesi
+## 24.12.2024 - 1.16.2 Güncellemesi
 
 Güncellemeyi yapmak için aşağıdaki komutları sunucunuza girin. **Güncellemeye başlamadan önce panele giriş yaparak node durumunu kontrol edin, Active  durumda ise Stand By durumuna geçmesini bekleyip ondan sonra güncelleme yapın.**
 
