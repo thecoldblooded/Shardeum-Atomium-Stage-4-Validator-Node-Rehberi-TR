@@ -157,3 +157,34 @@ NOT: Eğer arayüzden başlatmak konusunda problem yaşıyorsanız terminal ekra
 Start işlemini ve stake işlemini tamamladıktan sonra arayüzde "Waiting for Network ya da On Standby" şeklinde bir uyarı görüyorsanız bir problem yok. Ağ bir süre sonra sizi onaylayacaktır.
 
 Shardeum Validator Node çalıştırmak isteyen kullanıcı için talimatlar burada bulunabilir: <https://docs.shardeum.org/docs/node/run/validator>
+
+### 24.12.2024 1.16.2 Güncellemesi
+
+Güncellemeyi yapmak için aşağıdaki komutları sunucunuza girin. **Güncellemeye başlamadan önce panele giriş yaparak node durumunu kontrol edin, Active  durumda ise Stand By durumuna geçmesini bekleyip ondan sonra güncelleme yapın.**
+
+``` curl -O https://raw.githubusercontent.com/shardeum/shardeum-validator/refs/heads/itn4/install.sh && chmod +x install.sh && ./install.sh ```
+
+- By running this installer, you agree to allow the Shardeum team to collect this data. (Y/n)?: Y + ENTER
+- What base directory should the node use (default ~/shardeum): ENTER
+- Do you want to run the web based Dashboard? (Y/n): Y + ENTER
+- Enter the port (1025-65536) to access the web based Dashboard (default 8080): ENTER
+- If you wish to set an explicit external IP, enter an IPv4 address (default=auto): ENTER
+- If you wish to set an explicit internal IP, enter an IPv4 address (default=auto): ENTER
+- This allows p2p communication between nodes. Enter the first port (1025-65536) for p2p communication (default 9001): ENTER
+- Enter the second port (1025-65536) for p2p communication (default 10001): ENTER
+- Set the password to access the Dashboard: Panele erişimde kullanacağınız şifreyi girin. **Minimum 8 karakterli olacak, bir küçük ve bir büyük harf içerecek, en az bir sayı içerecek ve en az bir özel harf (?!@$ gibi) içerecek. Aksi halde panele erişimde hata alırsınız.**
+
+Bu işlemleri tamamladıktan sonra panele geçip şifremizle giriş yaptıktan sonra Remove Stake tıklayıp Confirm Unstake diyerek işlemi onaylıyoruz. İşlem tamamlandıktan sonra tekrar Terminale dönerek;
+
+``` cd shardeum ```
+``` bash ./shell.sh ```
+``` operator-cli gui start ```
+
+komutlarını girip tekrar panele şifremizle giriş yapıyoruz. Start Node tuşuna bastıktan sonra No SHM Staked uyarısını görüp alt kısımdan Add Stake tuşuna basarak minimum 10 SHM stake ediyoruz ve işlemi onaylıyoruz.
+
+**Güncelleme işlemi başarıyla tamamlanmıştır. Waiting for network ve ardından Standby fonksiyonunu gördükten sonra ekranı ve terminali kapatabiliriz.**
+
+
+
+
+
